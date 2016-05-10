@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @mass.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @mass.end %>
+</p>
+
+<p>
+  <strong>Church:</strong>
+  <%= @mass.church %>
+</p>
+
+<%= link_to 'Edit', edit_mass_path(@mass) %> |
+<%= link_to 'Back', masses_path %>

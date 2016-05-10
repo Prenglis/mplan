@@ -1,0 +1,29 @@
+<%= form_for(@acolyte) do |f| %>
+  <% if @acolyte.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@acolyte.errors.count, "error") %> prohibited this acolyte from being saved:</h2>
+
+      <ul>
+      <% @acolyte.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :firstname %><br>
+    <%= f.text_field :firstname %>
+  </div>
+  <div class="field">
+    <%= f.label :lastname %><br>
+    <%= f.text_field :lastname %>
+  </div>
+  <div class="field">
+    <%= f.label :church_id %><br>
+    <%= f.text_field :church_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

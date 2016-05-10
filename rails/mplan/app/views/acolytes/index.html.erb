@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Acolytes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Church</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @acolytes.each do |acolyte| %>
+      <tr>
+        <td><%= acolyte.firstname %></td>
+        <td><%= acolyte.lastname %></td>
+        <td><%= acolyte.church %></td>
+        <td><%= link_to 'Show', acolyte %></td>
+        <td><%= link_to 'Edit', edit_acolyte_path(acolyte) %></td>
+        <td><%= link_to 'Destroy', acolyte, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Acolyte', new_acolyte_path %>
