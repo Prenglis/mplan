@@ -18,7 +18,7 @@ class MassesControllerTest < ActionController::TestCase
 
   test "should create mass" do
     assert_difference('Mass.count') do
-      post :create, mass: { church_id: @mass.church_id, end: @mass.end, start: @mass.start }
+      post :create, mass: { begin: @mass.begin, church_id: @mass.church_id, end: @mass.end }
     end
 
     assert_redirected_to mass_path(assigns(:mass))
@@ -35,7 +35,7 @@ class MassesControllerTest < ActionController::TestCase
   end
 
   test "should update mass" do
-    patch :update, id: @mass, mass: { church_id: @mass.church_id, end: @mass.end, start: @mass.start }
+    patch :update, id: @mass, mass: { begin: @mass.begin, church_id: @mass.church_id, end: @mass.end }
     assert_redirected_to mass_path(assigns(:mass))
   end
 

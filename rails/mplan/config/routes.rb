@@ -1,6 +1,21 @@
 Rails.application.routes.draw do
-  resources :acolytes
+  resources :requirements
   resources :masses
+  resources :schedule_candidates
+  resources :lineup_items
+  resources :masses
+  resources :requirements
+  resources :acolytes
+  resources :schedule_fitnesses
+  resources :schedule_candidates
+  resources :requirements
+  resources :positions
+  resources :schedule_headers
+  resources :weekday_constraints
+  resources :mass_constraints
+  resources :interval_constraints
+  resources :constraints
+  resources :acolytes
   resources :churches
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

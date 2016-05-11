@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Weekday Constraints</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Name</th>
+      <th>Constraint</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weekday_constraints.each do |weekday_constraint| %>
+      <tr>
+        <td><%= weekday_constraint.day %></td>
+        <td><%= weekday_constraint.name %></td>
+        <td><%= weekday_constraint.constraint %></td>
+        <td><%= link_to 'Show', weekday_constraint %></td>
+        <td><%= link_to 'Edit', edit_weekday_constraint_path(weekday_constraint) %></td>
+        <td><%= link_to 'Destroy', weekday_constraint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Weekday constraint', new_weekday_constraint_path %>

@@ -18,7 +18,7 @@ class AcolytesControllerTest < ActionController::TestCase
 
   test "should create acolyte" do
     assert_difference('Acolyte.count') do
-      post :create, acolyte: { church_id: @acolyte.church_id, firstname: @acolyte.firstname, lastname: @acolyte.lastname }
+      post :create, acolyte: { church_id: @acolyte.church_id, firstname: @acolyte.firstname, lastname: @acolyte.lastname, since: @acolyte.since }
     end
 
     assert_redirected_to acolyte_path(assigns(:acolyte))
@@ -35,7 +35,7 @@ class AcolytesControllerTest < ActionController::TestCase
   end
 
   test "should update acolyte" do
-    patch :update, id: @acolyte, acolyte: { church_id: @acolyte.church_id, firstname: @acolyte.firstname, lastname: @acolyte.lastname }
+    patch :update, id: @acolyte, acolyte: { church_id: @acolyte.church_id, firstname: @acolyte.firstname, lastname: @acolyte.lastname, since: @acolyte.since }
     assert_redirected_to acolyte_path(assigns(:acolyte))
   end
 

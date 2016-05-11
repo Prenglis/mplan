@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Acolyte:</strong>
+  <%= @lineup_item.acolyte %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @lineup_item.position %>
+</p>
+
+<%= link_to 'Edit', edit_lineup_item_path(@lineup_item) %> |
+<%= link_to 'Back', lineup_items_path %>

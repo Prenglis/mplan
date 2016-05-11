@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Schedule Headers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedule_headers.each do |schedule_header| %>
+      <tr>
+        <td><%= schedule_header.from %></td>
+        <td><%= schedule_header.to %></td>
+        <td><%= link_to 'Show', schedule_header %></td>
+        <td><%= link_to 'Edit', edit_schedule_header_path(schedule_header) %></td>
+        <td><%= link_to 'Destroy', schedule_header, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Schedule header', new_schedule_header_path %>

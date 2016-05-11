@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Lineup Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Acolyte</th>
+      <th>Position</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lineup_items.each do |lineup_item| %>
+      <tr>
+        <td><%= lineup_item.acolyte %></td>
+        <td><%= lineup_item.position %></td>
+        <td><%= link_to 'Show', lineup_item %></td>
+        <td><%= link_to 'Edit', edit_lineup_item_path(lineup_item) %></td>
+        <td><%= link_to 'Destroy', lineup_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lineup item', new_lineup_item_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @weekday_constraint.day %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @weekday_constraint.name %>
+</p>
+
+<p>
+  <strong>Constraint:</strong>
+  <%= @weekday_constraint.constraint %>
+</p>
+
+<%= link_to 'Edit', edit_weekday_constraint_path(@weekday_constraint) %> |
+<%= link_to 'Back', weekday_constraints_path %>

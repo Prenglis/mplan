@@ -69,6 +69,6 @@ class AcolytesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def acolyte_params
-      params.require(:acolyte).permit(:firstname, :lastname, :church_id)
+      params.require(:acolyte).permit(:firstname, :lastname, :church_id, :since)
     end
 end

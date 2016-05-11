@@ -1,0 +1,29 @@
+<%= form_for(@interval_constraint) do |f| %>
+  <% if @interval_constraint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@interval_constraint.errors.count, "error") %> prohibited this interval_constraint from being saved:</h2>
+
+      <ul>
+      <% @interval_constraint.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :from %><br>
+    <%= f.datetime_select :from %>
+  </div>
+  <div class="field">
+    <%= f.label :to %><br>
+    <%= f.datetime_select :to %>
+  </div>
+  <div class="field">
+    <%= f.label :constraint_id %><br>
+    <%= f.text_field :constraint_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

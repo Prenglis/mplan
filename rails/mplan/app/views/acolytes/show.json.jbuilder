@@ -1,1 +1,1 @@
-json.extract! @acolyte, :id, :firstname, :lastname, :church_id, :created_at, :updated_at
+json.extract! @acolyte, :id, :firstname, :lastname, :church_id, :since, :created_at, :updated_at

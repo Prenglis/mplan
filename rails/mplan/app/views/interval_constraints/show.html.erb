@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>From:</strong>
+  <%= @interval_constraint.from %>
+</p>
+
+<p>
+  <strong>To:</strong>
+  <%= @interval_constraint.to %>
+</p>
+
+<p>
+  <strong>Constraint:</strong>
+  <%= @interval_constraint.constraint %>
+</p>
+
+<%= link_to 'Edit', edit_interval_constraint_path(@interval_constraint) %> |
+<%= link_to 'Back', interval_constraints_path %>

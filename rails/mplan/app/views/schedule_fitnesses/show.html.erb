@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Schedule header:</strong>
+  <%= @schedule_fitness.schedule_header %>
+</p>
+
+<p>
+  <strong>Schedule candidate:</strong>
+  <%= @schedule_fitness.schedule_candidate %>
+</p>
+
+<p>
+  <strong>Fitness:</strong>
+  <%= @schedule_fitness.fitness %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_fitness_path(@schedule_fitness) %> |
+<%= link_to 'Back', schedule_fitnesses_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mass_id: 
+  constraint_id: 
+  constraint_type: Constraint
+
+two:
+  mass_id: 
+  constraint_id: 
+  constraint_type: Constraint

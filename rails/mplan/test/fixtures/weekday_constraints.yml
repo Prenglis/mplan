@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day: 1
+  name: MyString
+  constraint_id: 
+  constraint_type: Constraint
+
+two:
+  day: 1
+  name: MyString
+  constraint_id: 
+  constraint_type: Constraint

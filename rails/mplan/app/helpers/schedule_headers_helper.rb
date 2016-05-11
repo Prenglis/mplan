@@ -1,0 +1,2 @@
+module ScheduleHeadersHelper
+end

@@ -1,0 +1,25 @@
+<%= form_for(@mass_constraint) do |f| %>
+  <% if @mass_constraint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mass_constraint.errors.count, "error") %> prohibited this mass_constraint from being saved:</h2>
+
+      <ul>
+      <% @mass_constraint.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mass_id %><br>
+    <%= f.text_field :mass_id %>
+  </div>
+  <div class="field">
+    <%= f.label :constraint_id %><br>
+    <%= f.text_field :constraint_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

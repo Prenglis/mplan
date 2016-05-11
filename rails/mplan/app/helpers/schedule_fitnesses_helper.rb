@@ -1,0 +1,2 @@
+module ScheduleFitnessesHelper
+end

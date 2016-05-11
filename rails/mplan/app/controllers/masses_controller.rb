@@ -69,6 +69,6 @@ class MassesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mass_params
-      params.require(:mass).permit(:start, :end, :church_id)
+      params.require(:mass).permit(:begin, :end, :church_id)
     end
 end

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Interval Constraints</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Constraint</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @interval_constraints.each do |interval_constraint| %>
+      <tr>
+        <td><%= interval_constraint.from %></td>
+        <td><%= interval_constraint.to %></td>
+        <td><%= interval_constraint.constraint %></td>
+        <td><%= link_to 'Show', interval_constraint %></td>
+        <td><%= link_to 'Edit', edit_interval_constraint_path(interval_constraint) %></td>
+        <td><%= link_to 'Destroy', interval_constraint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Interval constraint', new_interval_constraint_path %>
