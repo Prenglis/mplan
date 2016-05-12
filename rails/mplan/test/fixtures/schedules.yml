@@ -2,10 +2,8 @@
 
 one:
   schedule_header_id: 
-  schedule_candidate_id: 
   fitness: 1.5
 
 two:
   schedule_header_id: 
-  schedule_candidate_id: 
   fitness: 1.5

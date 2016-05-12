@@ -1,10 +1,10 @@
-<%= form_for(@schedule_fitness) do |f| %>
-  <% if @schedule_fitness.errors.any? %>
+<%= form_for(@schedule) do |f| %>
+  <% if @schedule.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@schedule_fitness.errors.count, "error") %> prohibited this schedule_fitness from being saved:</h2>
+      <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
 
       <ul>
-      <% @schedule_fitness.errors.full_messages.each do |message| %>
+      <% @schedule.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -14,10 +14,6 @@
   <div class="field">
     <%= f.label :schedule_header_id %><br>
     <%= f.text_field :schedule_header_id %>
-  </div>
-  <div class="field">
-    <%= f.label :schedule_candidate_id %><br>
-    <%= f.text_field :schedule_candidate_id %>
   </div>
   <div class="field">
     <%= f.label :fitness %><br>

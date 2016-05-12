@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :schedules
+  resources :schedules
   resources :requirements
   resources :masses
   resources :schedule_candidates
@@ -6,7 +8,6 @@ Rails.application.routes.draw do
   resources :masses
   resources :requirements
   resources :acolytes
-  resources :schedule_fitnesses
   resources :schedule_candidates
   resources :requirements
   resources :positions

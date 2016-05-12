@@ -102,3 +102,53 @@ a = Acolyte.create(firstname: 'Jan', lastname: 'Zin', church_id:1, since: Date.p
 a = Acolyte.create(firstname: 'Fal', lastname: 'Wel', church_id:1, since: Date.parse('01-05-2008'))
 ScheduleHeader.create(from: DateTime.parse('2016-04-29 16:30:00'), to: DateTime.parse('2016-05-29 12:30:00'))
 
+#initialize lineup_items
+positions = Position.ids
+Acolyte.ids.each{ |a_id|
+  positions.each{ |p_id|
+    LineupItem.create(acolyte_id:a_id, position_id:p_id)
+  }
+}
+ # sh = ScheduleHeader.find(1)
+ #        from = sh[:from]
+ #        to = sh[:to]
+ #        masses = Mass.where("begin >= :from AND end <= :to", {from: from, to: to})#.joins(:requirements)
+ #        reqs = Requirement.joins(:masses).where(masses: {id: masses.ids}).pluck(:position_id, :amount)
+ #        acos = Acolyte.ids
+ #        lineup = {}
+ #        lineup_reverse = {}
+ #        i = 0
+ #        j = acos.length-1
+ #        temp_lineup = []
+ #        temp_lineup_reverse = []
+ #        reqs.each{ |pid,amount|
+ #          if lineup[pid].nil?
+ #              lineup[pid] = []
+ #              lineup_reverse[pid] = []
+ #          end
+ #          temp_lineup = []
+ #          temp_lineup_reverse = []
+ #          amount.times{
+ #              temp_lineup += [acos[i%acos.length]]
+ #              temp_lineup_reverse += [acos[j%acos.length]]
+ #              i = i + 1
+ #              j = j - 1
+ #          }
+ #          lineup[pid] += [temp_lineup]
+ #          lineup_reverse[pid] += [temp_lineup_reverse]
+ #        }
+ #        lineup.each{ |k,v|
+ #          v.each{ |aco_list|
+ #           aco_list.each{ |entry|
+ #                LineupItem.create(acolyte_id:entry, position_id:k)
+ #           }
+ #          }
+ #        }
+ #       lineup_reverse.each{ |k,v|
+ #          v.each{ |aco_list|
+ #           aco_list.each{ |entry|
+ #                LineupItem.create(acolyte_id:entry, position_id:k)
+ #           }
+ #          }
+ #        }
+

@@ -3,42 +3,37 @@ class ScheduleCreator
        @schedule_id = schedule_id
        @schedule_candidate = create_candidate()
        @schedule_candidate_reverse = reverse_schedule(schedule_candidate)
-    end
-    def create_candidate()
-        sh = ScheduleHeader.find(@schedule_id)
-        sh = ScheduleHeader.find(1)
-        from = sh[:from]
-        to = sh[:to]
-        masses = Mass.where("begin >= :from AND end <= :to", {from: from, to: to}).joins(:requirements)
-        # reqs = masses.distinct.pluck(:requirement.id)
-        # reqs = Requirement.joins(:masses).where(requirement_id: reqs);
-        reqs = Requirement.joins(:masses).pluck(:position_id, :amount).distinct
-        acos = Acolyte.ids
-        lineup = {}
-        lineup_reverse = {}
-        i = 0
-        j = acos.length-1
-        temp_lineup = []
-        temp_lineup_reverse = []
-        reqs.each{ |rid,pid,amount|
-          if lineup[rid].nil?
-              lineup[rid] = {}
-              lineup_reverse[rid] = {}
-          end
-          temp_lineup = []
-          temp_lineup_reverse = []
-          amount.times{
-              temp_lineup += [acos[i%acos.length]]
-              temp_lineup_reverse += [acos[j%acos.length]]
-              i = i + 1
-              j = j - 1
-          }
-          lineup[rid][pid] = temp_lineup
-          lineup_reverse[rid][pid] = temp_lineup_reverse
-        }
-    end
-    def reverse_schedule(schedule_candidate)
-        return schedule_candidate
-    end
+   end
+   def create_candidate()
+       @schedule_id = 1
+       sh = ScheduleHeader.find(@schedule_id)
+       from = sh[:from]
+       to = sh[:to]
+       masses = Mass.where("begin >= :from AND end <= :to", {from: from, to: to})
+       aco_ids = Acolyte.ids
+       sc_ids = []
+       aco_used = []
+       current_acolyte = 0
+       acolyte_length = aco_ids.length
+       schedule = Schedule.create(schedule_header_id: @schedule_id, fitness: 0.0)
+       masses.each{ |mass|
+         schedule_candidate = ScheduleCandidate.create(mass_id: mass.id)
+         schedule_candidate.schedules << Schedule.where(id: schedule.id)
+         sc_ids = sc_ids + [schedule_candidate.id]
+         restrictions = Requirement.joins(:masses)
+         restrictions.each{ |restriction|
+           aco_used = []
+           acos_needed = restriction[:amount]
+           pos = restriction[:position_id]
+           acos_needed.times{
+               aco_used = aco_used + [aco_ids[current_acolyte%acolyte_length]]
+               current_acolyte = current_acolyte + 1
+           }
+           schedule_candidate.lineup_items << LineupItem.where(acolyte_id: aco_used, position_id: pos)
+         }
+       }
+   end
+   def reverse_schedule(schedule_candidate)
+       return schedule_candidate
+   end
 end
-sc = ScheduleCreator.new(1)

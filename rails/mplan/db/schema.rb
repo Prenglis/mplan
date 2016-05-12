@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511091505) do
+ActiveRecord::Schema.define(version: 20160512124112) do
 
   create_table "acolytes", force: :cascade do |t|
     t.string   "firstname",  limit: 255
@@ -124,16 +124,10 @@ ActiveRecord::Schema.define(version: 20160511091505) do
 
   add_index "schedule_candidates", ["mass_id"], name: "index_schedule_candidates_on_mass_id", using: :btree
 
-  create_table "schedule_fitnesses", force: :cascade do |t|
-    t.integer  "schedule_header_id",    limit: 4
-    t.integer  "schedule_candidate_id", limit: 4
-    t.float    "fitness",               limit: 24
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+  create_table "schedule_candidates_schedules", id: false, force: :cascade do |t|
+    t.integer "schedule_id",           limit: 4, null: false
+    t.integer "schedule_candidate_id", limit: 4, null: false
   end
-
-  add_index "schedule_fitnesses", ["schedule_candidate_id"], name: "index_schedule_fitnesses_on_schedule_candidate_id", using: :btree
-  add_index "schedule_fitnesses", ["schedule_header_id"], name: "index_schedule_fitnesses_on_schedule_header_id", using: :btree
 
   create_table "schedule_headers", force: :cascade do |t|
     t.datetime "from"
@@ -141,6 +135,15 @@ ActiveRecord::Schema.define(version: 20160511091505) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "schedule_header_id", limit: 4
+    t.float    "fitness",            limit: 24
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "schedules", ["schedule_header_id"], name: "index_schedules_on_schedule_header_id", using: :btree
 
   create_table "weekday_constraints", force: :cascade do |t|
     t.integer  "day",             limit: 4
@@ -160,6 +163,5 @@ ActiveRecord::Schema.define(version: 20160511091505) do
   add_foreign_key "masses", "churches"
   add_foreign_key "requirements", "positions"
   add_foreign_key "schedule_candidates", "masses"
-  add_foreign_key "schedule_fitnesses", "schedule_candidates"
-  add_foreign_key "schedule_fitnesses", "schedule_headers"
+  add_foreign_key "schedules", "schedule_headers"
 end
