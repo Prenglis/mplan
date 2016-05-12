@@ -4,6 +4,37 @@ class ScheduleCreator
        @schedule_candidate = create_candidate()
        @schedule_candidate_reverse = reverse_schedule(schedule_candidate)
    end
+   def calculate_fitness(schedule_id)
+   end
+   def print_schedule(schedule_id)
+       schedule_id = 1
+       scs = ScheduleCandidate.joins(:schedules).where(schedules: {id: schedule_id})
+       output_string = ""
+       output_strings = []
+       old_pos = 0
+       scs.each{ |sc|
+           output_string = ""
+           masses = Mass.find(sc[:mass_id])
+           output_string += "#{masses[:begin]}"
+           lineup = LineupItem.joins(:schedule_candidates).where(schedule_candidates: {id: sc.id}).order(:position_id)
+           old_pos = 0
+           lineup.each{ |entry|
+             if old_pos != entry[:position_id]
+               old_pos = entry[:position_id]
+               position_name = Position.find(entry[:position_id])[:description]
+               output_string += " #{position_name}: "
+             end
+             aco = Acolyte.find(entry[:acolyte_id])
+             aco_name = " #{aco[:firstname]} #{aco[:lastname]}, "
+             output_string += aco_name
+           }
+           output_strings += [output_string]
+        }
+        output_strings.each{ |outputs|
+          puts outputs
+        }
+       
+   end
    def create_candidate()
        @schedule_id = 1
        sh = ScheduleHeader.find(@schedule_id)
@@ -20,7 +51,7 @@ class ScheduleCreator
          schedule_candidate = ScheduleCandidate.create(mass_id: mass.id)
          schedule_candidate.schedules << Schedule.where(id: schedule.id)
          sc_ids = sc_ids + [schedule_candidate.id]
-         restrictions = Requirement.joins(:masses)
+         restrictions = Requirement.joins(:masses).where(masses: {id: mass[:id]})
          restrictions.each{ |restriction|
            aco_used = []
            acos_needed = restriction[:amount]
