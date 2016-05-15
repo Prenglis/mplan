@@ -2,21 +2,25 @@ class ScheduleCreator
    def initialize(schedule_id)
        @schedule_id = schedule_id
        @schedule_candidate = create_candidate()
-       @schedule_candidate_reverse = reverse_schedule(schedule_candidate)
    end
    def calculate_fitness(schedule_id)
    end
    def print_schedule(schedule_id)
        schedule_id = 1
-       scs = ScheduleCandidate.joins(:schedules).where(schedules: {id: schedule_id})
+       scs = ScheduleCandidate.joins(:schedules).where(schedules: {id: schedule_id}).select([:id, :mass_id])
        output_string = ""
        output_strings = []
        old_pos = 0
+       masses = Mass.where(id: scs.collect{|entry| entry[:mass_id]})
+       scs = scs.collect{|entry| entry[:id]}
+       mass_counter = 0
+       acos = Acolyte.select("*")
        scs.each{ |sc|
+           mass = masses[mass_counter]
+           mass_counter = mass_counter + 1
            output_string = ""
-           masses = Mass.find(sc[:mass_id])
-           output_string += "#{masses[:begin]}"
-           lineup = LineupItem.joins(:schedule_candidates).where(schedule_candidates: {id: sc.id}).order(:position_id)
+           output_string += "#{mass[:begin]}"
+           lineup = LineupItem.joins(:schedule_candidates).where(schedule_candidates: {id: sc}).order(:position_id)
            old_pos = 0
            lineup.each{ |entry|
              if old_pos != entry[:position_id]
@@ -24,7 +28,7 @@ class ScheduleCreator
                position_name = Position.find(entry[:position_id])[:description]
                output_string += " #{position_name}: "
              end
-             aco = Acolyte.find(entry[:acolyte_id])
+             aco = acos.bsearch{|acolyte| acolyte[:id] == entry[:acolyte_id]}
              aco_name = " #{aco[:firstname]} #{aco[:lastname]}, "
              output_string += aco_name
            }
