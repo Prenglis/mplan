@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   resources :weekday_constraints
   resources :mass_constraints
   resources :interval_constraints
-  resources :constraints
   resources :acolytes
   resources :churches
   # The priority is based upon order of creation: first created -> highest priority.
